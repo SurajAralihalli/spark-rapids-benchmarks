@@ -325,6 +325,8 @@ if __name__ == "__main__":
     parser.add_argument('time_log',
                         help='path to execution time log, only support local path.',
                         default="")
+    parser.add_argument('output_prefix',
+                        help='text to prepend to every output file (e.g., "hdfs:///ds-parquet")')
     parser.add_argument('--input_format',
                         help='type for input data source, e.g. parquet, orc, json, csv or iceberg, delta. ' +
                         'Certain types are not fully supported by GPU reading, please refer to ' +
@@ -332,8 +334,6 @@ if __name__ == "__main__":
                         'for more details.',
                         choices=['parquet', 'orc', 'avro', 'csv', 'json', 'iceberg', 'delta'],
                         default='parquet')
-    parser.add_argument('--output_prefix',
-                        help='text to prepend to every output file (e.g., "hdfs:///ds-parquet")')
     parser.add_argument('--output_format',
                         help='type of query output',
                         default='parquet')
