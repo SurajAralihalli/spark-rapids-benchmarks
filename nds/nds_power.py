@@ -320,13 +320,15 @@ if __name__ == "__main__":
                         'session name "spark_catalog" is supported now, customized catalog is not ' +
                         'yet supported. Note if this points to a Delta Lake table, the path must be ' +
                         'absolute. Issue: https://github.com/delta-io/delta/issues/555')
+    parser.add_argument('output_prefix',
+                        help='text to prepend to every output file (e.g., "hdfs:///ds-parquet")')
     parser.add_argument('query_stream_file',
                         help='query stream file that contains NDS queries in specific order')
     parser.add_argument('time_log',
                         help='path to execution time log, only support local path.',
                         default="")
-    parser.add_argument('output_prefix',
-                        help='text to prepend to every output file (e.g., "hdfs:///ds-parquet")')
+    parser.add_argument('json_summary_folder',
+                        help='Empty folder/path (will create if not exist) to save JSON summary file for each query.')
     parser.add_argument('--input_format',
                         help='type for input data source, e.g. parquet, orc, json, csv or iceberg, delta. ' +
                         'Certain types are not fully supported by GPU reading, please refer to ' +
@@ -344,8 +346,6 @@ if __name__ == "__main__":
                         help='When loading Text files like json and csv, schemas are required to ' +
                         'determine if certain parts of the data are read as decimal type or not. '+
                         'If specified, float data will be used.')
-    parser.add_argument('--json_summary_folder',
-                        help='Empty folder/path (will create if not exist) to save JSON summary file for each query.')
     parser.add_argument('--delta_unmanaged',
                         action='store_true',
                         help='Use unmanaged tables for DeltaLake. This is useful for testing DeltaLake without ' +
