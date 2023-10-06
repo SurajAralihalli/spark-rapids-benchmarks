@@ -325,6 +325,11 @@ if __name__ == "__main__":
     parser.add_argument('time_log',
                         help='path to execution time log, only support local path.',
                         default="")
+    parser.add_argument('extra_time_log',
+                        help='extra path to save time log when running in cloud environment where '+
+                        'driver node/pod cannot be accessed easily. User needs to add essential extra ' +
+                        'jars and configurations to access different cloud storage systems. ' +
+                        'e.g. s3, gs etc.')
     parser.add_argument('json_summary_folder',
                         help='Empty folder/path (will create if not exist) to save JSON summary file for each query.')
     parser.add_argument('input_format',
@@ -366,11 +371,6 @@ if __name__ == "__main__":
                         action='store_true',
                         help='use table meta information in Hive metastore directly without ' +
                         'registering temp views.')
-    parser.add_argument('--extra_time_log',
-                        help='extra path to save time log when running in cloud environment where '+
-                        'driver node/pod cannot be accessed easily. User needs to add essential extra ' +
-                        'jars and configurations to access different cloud storage systems. ' +
-                        'e.g. s3, gs etc.')
     args = parser.parse_args()
     query_dict = gen_sql_from_stream(args.query_stream_file)
     run_query_stream(args.input_prefix,
