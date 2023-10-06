@@ -330,8 +330,6 @@ if __name__ == "__main__":
                         'driver node/pod cannot be accessed easily. User needs to add essential extra ' +
                         'jars and configurations to access different cloud storage systems. ' +
                         'e.g. s3, gs etc.')
-    parser.add_argument('json_summary_folder',
-                        help='Empty folder/path (will create if not exist) to save JSON summary file for each query.')
     parser.add_argument('input_format',
                         help='type for input data source, e.g. parquet, orc, json, csv or iceberg, delta. ' +
                         'Certain types are not fully supported by GPU reading, please refer to ' +
@@ -345,7 +343,8 @@ if __name__ == "__main__":
                         'in the stream file will be run. e.g. "query1,query2,query3". Note, use ' +
                         '"_part1" and "_part2" suffix for the following query names: ' +
                         'query14, query23, query24, query39. e.g. query14_part1, query39_part2')
-    
+    parser.add_argument('--json_summary_folder',
+                        help='Empty folder/path (will create if not exist) to save JSON summary file for each query.')
     parser.add_argument('--output_prefix',
                         help='text to prepend to every output file (e.g., "hdfs:///ds-parquet")')
     parser.add_argument('--output_format',
